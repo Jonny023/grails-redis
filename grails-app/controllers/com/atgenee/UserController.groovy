@@ -9,7 +9,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class UserController {
 
-    RedisService redisService
+    def redisService
 
     def userService
 
@@ -62,7 +62,7 @@ class UserController {
      *  清理redis中指定的key
      */
     def removeOfKey() {
-        userService.deleteOfKey("age")
+        userService.deleteOfKey("ag*")
         render "清空redis所有数据"
     }
 
@@ -71,6 +71,22 @@ class UserController {
      */
     def getUsers() {
         render redisService.userList?:"暂无数据"
+    }
+
+    /**
+     *  将学生信息序列化后存入redis
+     */
+    def store() {
+        userService.store()
+        render "序列化学生信息"
+    }
+
+    /**
+     *  反序列化读取学生信息
+     */
+    def get() {
+        def student = userService.get(1L)
+        render "反序列化学生信息："+student.toString()
     }
 
 
