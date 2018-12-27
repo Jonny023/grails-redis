@@ -1,0 +1,11 @@
+grails:
+  redis:
+      poolConfig:
+          maxIdle: 10
+          doesnotexist: true
+      timeout: 5000
+      password: 123456
+      useSSL: false
+      port: 6379
+      host: localhost
+      database: 5
