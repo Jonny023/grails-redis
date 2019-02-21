@@ -5,6 +5,36 @@
 
 ## 核心代码
 
+### `build.gradle`中引入依赖
+
+```
+compile 'org.grails.plugins:redis:2.0.5'
+```
+
+### `redis配置`（`grails-app/conf/application-redis.yml`）
+
+```yaml
+grails:
+  redis:
+      poolConfig:
+          maxIdle: 10
+          doesnotexist: true
+      timeout: 5000
+      password: 123456
+      useSSL: false
+      port: 6379
+      host: 127.0.0.1
+      database: 5
+```
+
+### 在`application.yml`中加入配置使其生效
+
+```
+spring:
+    profiles:
+        include: redis
+```
+
 ```Groovy
 package com.atgenee
 
